@@ -20,6 +20,8 @@ public class SortStringLenghtAlphabet {
 			}
 		};
 		
+		// TODO using lambda
+		
 		Arrays.sort(arr, strComp);
 		
 		for(int i=0; i<arr.length; i++) {

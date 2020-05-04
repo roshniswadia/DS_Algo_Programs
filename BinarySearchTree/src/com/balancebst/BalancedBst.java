@@ -62,7 +62,6 @@ public class BalancedBst {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		BalancedBst tree = new BalancedBst(); 
         tree.root = new Node(10); 
         tree.root.left = new Node(8); 

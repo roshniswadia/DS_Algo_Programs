@@ -24,7 +24,7 @@ public class BSTAllPath {
 		if(node == null)
 			return;
 		
-		stack.push(node.data); // 50 40 30
+		stack.push(node.data); // 60 , 50 , 
 		allPaths(node.left);
 		if(node.left == null && node.right == null) {
 			System.out.println(stack);

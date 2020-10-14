@@ -9,7 +9,13 @@ public class MinJumps {
 
 	public static void main(String[] args) {
 		int arr1[] = { 2, 4, 1, 1, 3, 2, 6, 8, 2, 9, 3, 2, 1, 4, 1, 1, 1, 3, 3, 6 };
-		int minJumps = findJumps(arr1, 0);
+		
+		int arr2[] = {3,2,1,0,4};
+		int minJumps = findJumps(arr2, 0);
+		if(minJumps == Integer.MAX_VALUE)
+			System.out.println("True");
+		else
+			System.out.println("False");
 		System.out.println(minJumps);
 	}
 

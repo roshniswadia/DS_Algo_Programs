@@ -84,6 +84,7 @@ public class BinarySearchTree {
 				root = child;
 			}
 		}
+		return root;
 
 	}
 

@@ -3,6 +3,8 @@ package com;
 import java.util.HashMap;
 import java.util.Map;
 
+//Given an array containing only 0s and 1s, find the 
+//largest subarray which contains equal no of 0s and 1s. Expected time complexity is O(n).
 public class ContiguousSubArrayEqual01 {
 
 	public static void main(String[] args) {
@@ -49,14 +51,14 @@ public class ContiguousSubArrayEqual01 {
 		int max_length = 0;
 		int length = 0;
 		Map<Integer, Integer> indexSumMap = new HashMap<>();
-		indexSumMap.put(0, -1);
+		indexSumMap.put(0, -1); // { 0, 0, 1, 1, 0, 1, 0, 0, 0, 1 }
 		
 		for(int i=0; i<arr.length; i++) {
-			arr[i] = arr[i] == 0? -1:1;
+			arr[i] = arr[i] == 0? -1:1; // {-1, -1, 1,1,-1,1, -1, -1, -1. 1}
 		}
 		
-		for(int i=0; i<arr.length; i++) {
-			sum = sum + arr[i];
+		for(int i=0; i<arr.length; i++) {// 0, 1,2,3
+			sum = sum + arr[i]; // -1 , -2 , -1, 0
 			
 			if(sum == 0) {
 				max_length = i + 1;
@@ -68,7 +70,7 @@ public class ContiguousSubArrayEqual01 {
 					max_length = length;
 				}
 			}else{
-				indexSumMap.put(sum, i);
+				indexSumMap.put(sum, i); // (-1,2) (-2, 1) (0 , )
 			}
 		}
 		

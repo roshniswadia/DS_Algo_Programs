@@ -1,5 +1,7 @@
 package com;
-
+/* Given an array. Find the non repeating number
+ * 
+ */
 public class FindNonRepeatingInt {
 
 	public static void main(String[] args) {

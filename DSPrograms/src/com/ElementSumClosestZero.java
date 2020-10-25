@@ -1,7 +1,11 @@
 package com;
 
 import java.util.Arrays;
-
+/* Given an array of -ve and +ve integers
+ * Find pair of elements whose sum is closest to zero
+ * 
+ * 
+ */
 public class ElementSumClosestZero {
 
 	public static void main(String[] args) {

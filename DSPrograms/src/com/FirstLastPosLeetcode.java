@@ -1,4 +1,5 @@
 package com;
+
 /* Given an array of Integers. find the last and first index of a given number in the array
  * 
  */
@@ -6,80 +7,63 @@ public class FirstLastPosLeetcode {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		int[] arr = {5,7,7,8,10};
-		
-		//int[] arr = {3,3,3};
-		
-		int[] targetRange = searchRange(arr, 8);
-		
-		System.out.println( "MinIdex , MaxIdex" + targetRange[0] + "," + targetRange[1]);
+		//int[] arr = { 5, 7, 7, 8, 10 };
+
+		 int[] arr = {3,3,3};
+
+		int[] targetRange = searchRange(arr, 3);
+
+		System.out.println("MinIdex , MaxIdex" + targetRange[0] + "," + targetRange[1]);
 
 	}
-	
-	public static int findFirstPos(int[] arr, int start, int end , int target) {
-		if(start > end)
-			return Integer.MAX_VALUE;
-		
-		int mid = (start + end) /2;
-		int minIndex = Integer.MAX_VALUE;
-		if((mid == 0 || arr[mid-1] < target ) && target == arr[mid]) {
-			return Math.min(minIndex, mid);
-		}else if(mid !=0 && (arr[mid -1] >= target)) {
-			return Math.min(minIndex, findFirstPos(arr, start, mid -1,  target));
-		}else if((mid != arr.length -1) && (arr[mid + 1] <= target)) {
-			return Math.min(minIndex, findFirstPos(arr, mid + 1, end,  target));
+
+	public static int[] searchRange(int[] nums, int target) {
+		int[] result = new int[2];
+		result[0] = -1;
+		result[1] = -1;
+		int start = 0; //0
+		int end = nums.length - 1; //4
+		while (start <= end) {
+			//int mid = start + ((end - start) / 2); // 2, 3
+			int mid = (start + end)/2;
+			if (nums[mid] == target) {
+				result[0] = findStart(nums, start, mid, target);
+				result[1] = findEnd(nums, mid, end, target);
+				return result;
+			} else if (nums[mid] < target) {
+				start = mid + 1; //3
+			} else {
+				end = mid - 1;
+			}
 		}
-		return -1;
+		return result;
 	}
-	
-	public static int findLastPos(int[] arr, int start, int end , int target) {
-		if(start > end)
-			return Integer.MIN_VALUE;
-		
-		int mid = (start + end) /2;
-		int maxIndex = Integer.MIN_VALUE;
-		if((mid == (arr.length - 1) || arr[mid+1] > target ) && target == arr[mid]) {
-			return Math.max(maxIndex, mid);
-		}else if(mid !=0 && (arr[mid -1] >= target)) {
-			return Math.max(maxIndex, findLastPos(arr, start, mid -1,  target));
-		}else if((mid != arr.length -1) && (arr[mid + 1] <= target)) {
-			return Math.max(maxIndex, findLastPos(arr, mid + 1, end,  target));
+
+	public static int findStart(int[] nums, int start, int end, int target) {
+		int result = end;
+		while (start <= end) {
+			int mid = (start + end)/2;
+			if (nums[mid] == target) {
+				result = mid;
+				end = mid - 1;
+			} else {
+				start = mid + 1;
+			}
 		}
-		return -1;
+		return result;
 	}
-	
-	private static int extremeInsertionIndex(int[] nums, int target, boolean left) {
-        int lo = 0;
-        int hi = nums.length;
 
-        while (lo < hi) {
-            int mid = (lo + hi) / 2;
-            if (nums[mid] > target || (left && target == nums[mid])) {
-                hi = mid;
-            }
-            else {
-                lo = mid+1;
-            }
-        }
-
-        return lo;
-    }
-
-    public static int[] searchRange(int[] nums, int target) {
-        int[] targetRange = {-1, -1};
-
-        int leftIdx = extremeInsertionIndex(nums, target, true);
-
-        // assert that `leftIdx` is within the array bounds and that `target`
-        // is actually in `nums`.
-        if (leftIdx == nums.length || nums[leftIdx] != target) {
-            return targetRange;
-        }
-
-        targetRange[0] = leftIdx;
-        targetRange[1] = extremeInsertionIndex(nums, target, false)-1;
-
-        return targetRange;
-    }
-
+	public static int findEnd(int[] nums, int start, int end, int target) {
+		int result = start;
+		while (start <= end) {
+			int mid = start + ((end - start) / 2);
+			if (nums[mid] == target) {
+				result = mid;
+				start = mid + 1;
+			} else {
+				end = mid - 1;
+			}
+		}
+		return result;
+	}
 }

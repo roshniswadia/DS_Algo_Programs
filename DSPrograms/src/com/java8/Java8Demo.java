@@ -146,8 +146,8 @@ public class Java8Demo {
 		// group again (nested grouping)
 		System.out.println("Group again with some greater than 5");
 		Map<String, Map<String, Set<Integer>>> oddEvenAndCompareTo5 = list.stream()
-		        .collect(groupingBy(n -> n % 2 == 0 ? "EVEN" : "ODD",
-		                groupingBy(n -> n > 5 ? "GT5" : "LT5", toSet())
+		        .collect(Collectors.groupingBy(n -> n % 2 == 0 ? "EVEN" : "ODD",
+		                Collectors.groupingBy(n -> n > 5 ? "GT5" : "LT5", toSet())
 		        ));
 		Map<String, Set<Integer>> evenNumbers = oddEvenAndCompareTo5.get("EVEN");
 		Map<String, Set<Integer>> oddNumbers = oddEvenAndCompareTo5.get("ODD");
